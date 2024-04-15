@@ -1,1 +1,1 @@
-newscatcherapi
+newscatcherapi-python-sdk==6.0.2
