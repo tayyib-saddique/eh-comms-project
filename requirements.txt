@@ -1,8 +1,5 @@
 python-dotenv
 newscatcherapi-python-sdk==6.0.2
-<<<<<<< HEAD
 openai
-=======
 streamlit
 datetime
->>>>>>> da8c889 (frontpage)
