@@ -1,3 +1,5 @@
+python-dotenv
 newscatcherapi-python-sdk==6.0.2
+openai
 streamlit
 datetime
