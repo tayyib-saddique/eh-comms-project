@@ -10,6 +10,10 @@ client = OpenAI(
     api_key = os.environ.get("OPENAI_API_KEY"),
 )
 
+newscatcher = Newscatcher(
+      api_key= os.environ.get("NEWSCATCHER_API_KEY"), 
+  )
+
 def get_chat_completion(prompt, model="gpt-3.5-turbo"):
   
   response = client.chat.completions.create(
@@ -24,11 +28,7 @@ def get_chat_completion(prompt, model="gpt-3.5-turbo"):
 response = get_chat_completion("Tell me more information about local policing in the North East of England")
 print(response)
 
-def news_catcher():
-  newscatcher = Newscatcher(
-      api_key= os.environ.get("NEWSCATCHER_API_KEY"), 
-  )
-
+def news_catcher(newscatcher):
   try:
       # [Get] Search By Author Request
       get_response = newscatcher.search.get(
