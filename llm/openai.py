@@ -8,12 +8,23 @@ client = OpenAI(
     api_key = os.environ.get("OPENAI_API_KEY"),
 )
 
-completion = client.chat.completions.create(
-  model="gpt-3.5-turbo",
-  messages=[
-    {"role": "system", "content": "You are a poetic assistant, skilled in explaining complex programming concepts with creative flair."},
-    {"role": "user", "content": "Compose a poem that explains the concept of recursion in programming."}
-  ]
-)
+def get_chat_completion(prompt, model="gpt-3.5-turbo"):
+  
+   # Creating a message as required by the API
+   messages = [{"role": "user", "content": prompt}]
+  
+   # Calling the ChatCompletion API
+   response = client.ChatCompletion.create(
+       model=model,
+       messages=messages,
+       temperature=0,
+   )
 
-print(completion.choices[0].message)
+   # Returning the extracted response
+   return response.choices[0].message["content"]
+
+response = get_chat_completion("Translate into Spanish: As a beginner data scientist, I'm excited to learn about OpenAI API!")
+
+print(response)
+
+
