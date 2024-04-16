@@ -25,12 +25,12 @@ def get_chat_completion(prompt, model="gpt-3.5-turbo"):
     )
   return response.choices[0].message["content"]
 
+
 response = get_chat_completion("Tell me more information about local policing in the North East of England")
 print(response)
 
-def news_catcher(newscatcher):
+def news_catcher(newscatcher=newscatcher):
   try:
-      # [Get] Search By Author Request
       get_response = newscatcher.search.get(
           q="raises AND series A",
           search_in="title_content"
@@ -46,9 +46,11 @@ def news_catcher(newscatcher):
       pprint(e.reason)
       pprint(e.round_trip_time)
 
-response = get_chat_completion("Tell me more information about local policing in the North East of England")
-print(response)
-
 api_response = news_catcher()
-print(api_response)
+
+fine_tuned_model = client.FineTune.create(
+    model="gpt-3.5-turbo-0125",
+    training_data=api_response,
+    max_epochs=3
+)
 
