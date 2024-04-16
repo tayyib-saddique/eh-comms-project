@@ -46,12 +46,9 @@ def news_catcher():
       pprint(e.reason)
       pprint(e.round_trip_time)
 
-def main():
-    user_input = input()
+response = get_chat_completion("Tell me more information about local policing in the North East of England")
+print(response)
 
-    response = get_chat_completion(user_input)
-    print(response)
-
-    api_response = news_catcher()
-    print(api_response)
+api_response = news_catcher()
+print(api_response)
 
