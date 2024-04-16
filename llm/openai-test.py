@@ -23,17 +23,18 @@ def get_chat_completion(prompt, model="gpt-3.5-turbo"):
       ],
       temperature = 0.7
     )
-  return response.choices[0].message["content"]
+  return response.choices[0].message.content
 
 
-response = get_chat_completion("Tell me more information about local policing in the North East of England")
+response = get_chat_completion("Tell me information about local policing in the North East of England")
 print(response)
 
 def news_catcher(newscatcher=newscatcher):
   try:
       get_response = newscatcher.search.get(
-          q="raises AND series A",
-          search_in="title_content"
+        q="Policing",
+        search_in="title_content",
+        countries='GB'
       )
       return get_response
   except ApiException as e:
@@ -47,10 +48,11 @@ def news_catcher(newscatcher=newscatcher):
       pprint(e.round_trip_time)
 
 api_response = news_catcher()
+print(api_response)
 
-fine_tuned_model = client.FineTune.create(
+fine_tuned_model = client.fine_tuning.jobs.create(
     model="gpt-3.5-turbo-0125",
-    training_data=api_response,
-    max_epochs=3
+    training_file=api_response,
 )
+
 
