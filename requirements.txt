@@ -1,1 +1,3 @@
 newscatcherapi-python-sdk==6.0.2
+streamlit
+datetime
