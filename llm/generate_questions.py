@@ -14,7 +14,7 @@ from llm.summarise import get_summary
 load_dotenv()
 
 client = OpenAI(
-    api_key = "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",
+    api_key = XXX,
 )
 
 def get_chat_completion(prompt, model="gpt-4-turbo-2024-04-09"):
